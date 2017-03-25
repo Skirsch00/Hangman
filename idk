@@ -181,7 +181,7 @@ public class hangman
             }
             System.out.println();
             System.out.println();
-            for (int i = 0; i < MAX_GUESSES - 1; i++)
+            for (int i = 0; i < MAX_GUESSES; i++)
             {
                 if (incorLtrs[i] != null)
                     System.out.print(incorLtrs[i]+" ");
