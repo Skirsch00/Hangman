@@ -14,6 +14,19 @@ public class hangman
 
         String corLtrs[] = new String[word.length()];
         wipePage();
+        System.out.println(" ______");
+        System.out.println(" |    }");
+        System.out.println(" |");
+        System.out.println(" |");
+        System.out.println(" |");
+        System.out.println("_|_");
+        System.out.println();
+        for (int i = 0; i < word.length(); i++)
+            System.out.print("_ ");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println("P2: Guess a letter.");
         String guess = scan.next();
 
@@ -77,6 +90,7 @@ public class hangman
 
                 }
             }
+
             int wrongCounter = 0;
             for (int i = 0; i < MAX_GUESSES; i++)
             {
@@ -177,7 +191,7 @@ public class hangman
             if (wrongCounter == MAX_GUESSES) // if you guess wrong enough times (6), you lose
             {                                                                       
                 gameOver = true;             
-                System.out.println("P1 wins!");
+                System.out.println("P1 wins! The word was " + word + "!");
             }                                                                       
             if (rightCounter == word.length()) // if you guess enough right letters, you win
             {                                                                       
@@ -190,7 +204,6 @@ public class hangman
                 guess = scan.next();
             }
         }
-
     }
 
     public static void wipePage () // prints blank 60 times so you can no longer see previous print statements
