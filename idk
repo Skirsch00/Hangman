@@ -1,207 +1,257 @@
 import java.util.Scanner;
 public class hangman
 {
-    public static boolean gameOver = false;
+
     public static void main (String [] args)
     {
-
+        
+        boolean keepPlaying = true;
+        boolean oddRound = true;
         final int MAX_GUESSES = 6;
         String incorLtrs[] = new String [MAX_GUESSES];
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("P1: Type the word you want.");
-        String word = scan.next();
-
-        String corLtrs[] = new String[word.length()];
-        wipePage();
-        System.out.println(" ______");
-        System.out.println(" |    }");
-        System.out.println(" |");
-        System.out.println(" |");
-        System.out.println(" |");
-        System.out.println("_|_");
-        System.out.println();
-        for (int i = 0; i < word.length(); i++)
-            System.out.print("_ ");
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println("P2: Guess a letter.");
-        String guess = scan.next();
-
-        while (!gameOver) // keep guessing until the game is over
+        while (keepPlaying)
         {
-            boolean correctAnswer = false;
-            boolean invalidInput = false;
+            boolean gameOver = false;
+            if (oddRound)
+                System.out.println("P1: Type the word you want.");
+            else
+                System.out.println("P2: Type the word you want.");
+            String word = scan.next();
 
-            for (int i = 0; i < MAX_GUESSES - 1; i++)
-                if (incorLtrs[i] != null && incorLtrs[i].equalsIgnoreCase(guess))
-                    invalidInput = true;
+            String corLtrs[] = new String[word.length()];
+            wipePage();
+            System.out.println(" ______");
+            System.out.println(" |    }");
+            System.out.println(" |");
+            System.out.println(" |");
+            System.out.println(" |");
+            System.out.println("_|_");
+            System.out.println();
+            for (int i = 0; i < word.length(); i++)
+                System.out.print("_ ");
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            if (oddRound)
+                System.out.println("P2: Guess a letter.");
+            else
+                System.out.println("P1: Guess a letter.");
+            String guess = scan.next();
 
-            for (int i = 0; i < word.length(); i++) // these search through both arrays to make sure the letter has not already been guessed
-                if (corLtrs[i] != null && corLtrs[i].equalsIgnoreCase(guess))
-                    invalidInput = true;
-
-            if (guess.length() != 1)
-                invalidInput = true;
-
-            while (invalidInput)
+            while (!gameOver) // keep guessing until the game is over
             {
-                System.out.println("You can't use that! Try again.");
-                guess = scan.next();
-                invalidInput = false;
+                boolean correctAnswer = false;
+                boolean invalidInput = false;
 
-                for (int i = 0; i < MAX_GUESSES - 1; i++)   //this code is the same as the code up there. It needs to check after every input.
+                for (int i = 0; i < MAX_GUESSES - 1; i++)
                     if (incorLtrs[i] != null && incorLtrs[i].equalsIgnoreCase(guess))
                         invalidInput = true;
 
-                for (int i = 0; i < word.length(); i++) 
+                for (int i = 0; i < word.length(); i++) // these search through both arrays to make sure the letter has not already been guessed
                     if (corLtrs[i] != null && corLtrs[i].equalsIgnoreCase(guess))
                         invalidInput = true;
 
                 if (guess.length() != 1)
                     invalidInput = true;
-            }
 
-            wipePage();
-            int first = 0;
-            for (int second = 1; second <= word.length(); first++, second++)  // first and second parameter for substring, to grab 1 letter from the word at a time
-            {
-
-                if (word.substring(first, second).equalsIgnoreCase(guess))
+                while (invalidInput)
                 {
-                    corLtrs[first] = guess; // insert the correct letter in the correct place
-                    correctAnswer = true;
+                    System.out.println("You can't use that! Try again.");
+                    guess = scan.next();
+                    invalidInput = false;
+
+                    for (int i = 0; i < MAX_GUESSES - 1; i++)   //this code is the same as the code up there. It needs to check after every input.
+                        if (incorLtrs[i] != null && incorLtrs[i].equalsIgnoreCase(guess))
+                            invalidInput = true;
+
+                    for (int i = 0; i < word.length(); i++) 
+                        if (corLtrs[i] != null && corLtrs[i].equalsIgnoreCase(guess))
+                            invalidInput = true;
+
+                    if (guess.length() != 1)
+                        invalidInput = true;
                 }
 
-            }
-
-            if (!correctAnswer) // if the letter is not in the word
-            {
-                loop:
-                for (int i = 0; i < MAX_GUESSES; i++)
+                wipePage();
+                int first = 0;
+                for (int second = 1; second <= word.length(); first++, second++)  // first and second parameter for substring, to grab 1 letter from the word at a time
                 {
-                    if (incorLtrs[i] == null)
+
+                    if (word.substring(first, second).equalsIgnoreCase(guess))
                     {
-                        incorLtrs[i] = guess;   // add it to the array of incorrect letters guessed
-                        break loop;
+                        corLtrs[first] = guess; // insert the correct letter in the correct place
+                        correctAnswer = true;
                     }
 
                 }
-            }
 
-            int wrongCounter = 0;
-            for (int i = 0; i < MAX_GUESSES; i++)
-            {
-                if (incorLtrs[i] != null)
-                    wrongCounter++;
-            }
+                if (!correctAnswer) // if the letter is not in the word
+                {
+                    loop:
+                    for (int i = 0; i < MAX_GUESSES; i++)
+                    {
+                        if (incorLtrs[i] == null)
+                        {
+                            incorLtrs[i] = guess;   // add it to the array of incorrect letters guessed
+                            break loop;
+                        }
 
-            int rightCounter = 0;
-            for (int i = 0; i < word.length(); i++)
-            {
-                if (corLtrs[i] != null)
-                    rightCounter++;
-            }
+                    }
+                }
 
-            switch (wrongCounter) // based on the amount of wrong answers, it shows the correct state of the hangman (how many body parts)
-            {
-                case 0:
-                System.out.println(" ______");
-                System.out.println(" |    }");
-                System.out.println(" |");
-                System.out.println(" |");
-                System.out.println(" |");
-                System.out.println("_|_");
-                System.out.println();
-                break;
-                case 1:
-                System.out.println(" ______");
-                System.out.println(" |    }");
-                System.out.println(" |    O");
-                System.out.println(" |");
-                System.out.println(" |");
-                System.out.println("_|_");
-                System.out.println();
-                break;
-                case 2:
-                System.out.println(" ______");
-                System.out.println(" |    }");
-                System.out.println(" |    O");
-                System.out.println(" |    |");
-                System.out.println(" |");
-                System.out.println("_|_");
-                System.out.println();
-                break;
-                case 3:
-                System.out.println(" ______");
-                System.out.println(" |    }");
-                System.out.println(" |    O");
-                System.out.println(" |   /|");
-                System.out.println(" |");
-                System.out.println("_|_");
-                System.out.println();
-                break;
-                case 4:
-                System.out.println(" ______");
-                System.out.println(" |    }");
-                System.out.println(" |    O");
-                System.out.println(" |   /|\\");
-                System.out.println(" |");
-                System.out.println("_|_");
-                System.out.println();
-                break;
-                case 5:
-                System.out.println(" ______");
-                System.out.println(" |    }");
-                System.out.println(" |    O");
-                System.out.println(" |   /|\\");
-                System.out.println(" |   /");
-                System.out.println("_|_");
-                System.out.println();
-                break;
-                case 6:
-                System.out.println(" ______");
-                System.out.println(" |    }");
-                System.out.println(" |    O");
-                System.out.println(" |   /|\\");
-                System.out.println(" |   / \\");
-                System.out.println("_|_");
-                System.out.println();
-                break;
-            }
+                int wrongCounter = 0;
+                for (int i = 0; i < MAX_GUESSES; i++)
+                {
+                    if (incorLtrs[i] != null)
+                        wrongCounter++;
+                }
 
-            for (int i = 0; i < word.length(); i++)
-            {
-                if (corLtrs[i] == null)
-                    System.out.print("_ ");
-                else
-                    System.out.print(corLtrs[i]+" ");
-            }
-            System.out.println();
-            System.out.println();
-            for (int i = 0; i < MAX_GUESSES; i++)
-            {
-                if (incorLtrs[i] != null)
-                    System.out.print(incorLtrs[i]+" ");
-            }
-            System.out.println();
-            System.out.println();
-            if (wrongCounter == MAX_GUESSES) // if you guess wrong enough times (6), you lose
-            {                                                                       
-                gameOver = true;             
-                System.out.println("P1 wins! The word was " + word + "!");
-            }                                                                       
-            if (rightCounter == word.length()) // if you guess enough right letters, you win
-            {                                                                       
-                gameOver = true;             
-                System.out.println("P2 wins!");
-            }
-            if (!gameOver)
-            {
-                System.out.println("Guess again.");
-                guess = scan.next();
+                int rightCounter = 0;
+                for (int i = 0; i < word.length(); i++)
+                {
+                    if (corLtrs[i] != null)
+                        rightCounter++;
+                }
+
+                switch (wrongCounter) // based on the amount of wrong answers, it shows the correct state of the hangman (how many body parts)
+                {
+                    case 0:
+                    System.out.println(" ______");
+                    System.out.println(" |    }");
+                    System.out.println(" |");
+                    System.out.println(" |");
+                    System.out.println(" |");
+                    System.out.println("_|_");
+                    System.out.println();
+                    break;
+                    case 1:
+                    System.out.println(" ______");
+                    System.out.println(" |    }");
+                    System.out.println(" |    O");
+                    System.out.println(" |");
+                    System.out.println(" |");
+                    System.out.println("_|_");
+                    System.out.println();
+                    break;
+                    case 2:
+                    System.out.println(" ______");
+                    System.out.println(" |    }");
+                    System.out.println(" |    O");
+                    System.out.println(" |    |");
+                    System.out.println(" |");
+                    System.out.println("_|_");
+                    System.out.println();
+                    break;
+                    case 3:
+                    System.out.println(" ______");
+                    System.out.println(" |    }");
+                    System.out.println(" |    O");
+                    System.out.println(" |   /|");
+                    System.out.println(" |");
+                    System.out.println("_|_");
+                    System.out.println();
+                    break;
+                    case 4:
+                    System.out.println(" ______");
+                    System.out.println(" |    }");
+                    System.out.println(" |    O");
+                    System.out.println(" |   /|\\");
+                    System.out.println(" |");
+                    System.out.println("_|_");
+                    System.out.println();
+                    break;
+                    case 5:
+                    System.out.println(" ______");
+                    System.out.println(" |    }");
+                    System.out.println(" |    O");
+                    System.out.println(" |   /|\\");
+                    System.out.println(" |   /");
+                    System.out.println("_|_");
+                    System.out.println();
+                    break;
+                    case 6:
+                    System.out.println(" ______");
+                    System.out.println(" |    }");
+                    System.out.println(" |    O");
+                    System.out.println(" |   /|\\");
+                    System.out.println(" |   / \\");
+                    System.out.println("_|_");
+                    System.out.println();
+                    break;
+                }
+
+                for (int i = 0; i < word.length(); i++)
+                {
+                    if (corLtrs[i] == null)
+                        System.out.print("_ ");
+                    else
+                        System.out.print(corLtrs[i]+" ");
+                }
+                System.out.println();
+                System.out.println();
+                for (int i = 0; i < MAX_GUESSES; i++)
+                {
+                    if (incorLtrs[i] != null)
+                        System.out.print(incorLtrs[i]+" ");
+                }
+                System.out.println();
+                System.out.println();
+                if (wrongCounter == MAX_GUESSES) // if you guess wrong enough times (6), you lose
+                {                                                                       
+                    gameOver = true;   
+                    if (oddRound)
+                        System.out.println("P1 wins! The word was " + word + "!");
+                    else
+                        System.out.println("P2 wins! The word was " + word + "!");
+                }                                                                       
+                if (rightCounter == word.length()) // if you guess enough right letters, you win
+                {                                                                       
+                    gameOver = true;
+                    if (oddRound)
+                        System.out.println("P2 wins!");
+                    else
+                        System.out.println("P1 wins!");
+                }
+                if (!gameOver)
+                {
+                    System.out.println("Guess again.");
+                    guess = scan.next();
+                }
+
+                if (gameOver)
+                {
+                    System.out.println("Continue playing?");
+                    String playOn = scan.next();
+                    boolean valid = false;
+                    while (!valid)
+                    {
+                        if (playOn.equalsIgnoreCase("yes"))
+                        {
+                            keepPlaying = true;
+                            valid = true;
+                            wipePage();
+                            if (oddRound = true)
+                                oddRound = false;
+                            else
+                                oddRound = true;
+                        }
+                        else if (playOn.equalsIgnoreCase("no"))
+                        {
+                            keepPlaying = false;
+                            valid = true;
+                            System.out.println("Thanks for playing!");
+                        }
+                        else
+                        {
+                            System.out.println("Please answer with 'yes' or 'no'.");
+                            playOn = scan.next();
+                            valid = false;
+                        }
+                    }
+                }
             }
         }
     }
@@ -212,4 +262,3 @@ public class hangman
             System.out.println();
     }
 }
-
