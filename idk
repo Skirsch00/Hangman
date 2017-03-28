@@ -8,11 +8,12 @@ public class hangman
         boolean keepPlaying = true;
         boolean oddRound = true;
         final int MAX_GUESSES = 6;
-        String incorLtrs[] = new String [MAX_GUESSES];
+        
 
         Scanner scan = new Scanner(System.in);
         while (keepPlaying)
         {
+            String incorLtrs[] = new String [MAX_GUESSES];
             boolean gameOver = false;
             if (oddRound)
                 System.out.println("P1: Type the word you want.");
