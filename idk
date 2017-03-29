@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class sean
+public class hangman
 {
 
     public static void main (String [] args)
@@ -11,14 +11,18 @@ public class sean
         int p1Score = 0;
         int p2Score = 0;
         Scanner scan = new Scanner(System.in);
+        System.out.println("First player, enter your name.");
+        String P1 = scan.next();
+        System.out.println("Second player, enter your name.");
+        String P2 = scan.next();
         while (keepPlaying)
         {
             String incorLtrs[] = new String [MAX_GUESSES];
             boolean gameOver = false;
             if (oddRound)
-                System.out.println("P1: Type the word you want.");
+                System.out.println(P1+": Type the word you want.");
             else
-                System.out.println("P2: Type the word you want.");
+                System.out.println(P2+": Type the word you want.");
             String word = scan.next();
 
             String corLtrs[] = new String[word.length()];
@@ -37,9 +41,9 @@ public class sean
             System.out.println();
             System.out.println();
             if (oddRound)
-                System.out.println("P2: Guess a letter.");
+                System.out.println(P2+": Guess a letter.");
             else
-                System.out.println("P1: Guess a letter.");
+                System.out.println(P1+": Guess a letter.");
             String guess = scan.next();
 
             while (!gameOver) // keep guessing until the game is over
@@ -206,16 +210,16 @@ public class sean
                     if (oddRound)
                     {
                         p1Score++;
-                        System.out.println("P1 wins! The word was " + word + "!");
-                        System.out.println("P1 = "+p1Score);
-                        System.out.println("P2 = "+p2Score);
+                        System.out.println(P1+" wins! The word was " + word + "!");
+                        System.out.println(P1+" = "+p1Score);
+                        System.out.println(P2+" = "+p2Score);
                     }
                     else
                     {
                         p2Score++;
-                        System.out.println("P2 wins! The word was " + word + "!");
-                        System.out.println("P1 = "+p1Score);
-                        System.out.println("P2 = "+p2Score);
+                        System.out.println(P2+" wins! The word was " + word + "!");
+                        System.out.println(P1+" = "+p1Score);
+                        System.out.println(P2+" = "+p2Score);
                     }
                 }                                                                       
                 if (rightCounter == word.length()) // if you guess enough right letters, you win
@@ -224,24 +228,24 @@ public class sean
                     if (oddRound)
                     {
                         p2Score++;
-                        System.out.println("P2 wins!");
-                        System.out.println("P1 = "+p1Score);
-                        System.out.println("P2 = "+p2Score);
+                        System.out.println(P2+" wins!");
+                        System.out.println(P1+" = "+p1Score);
+                        System.out.println(P2+" = "+p2Score);
                     }
                     else
                     {
                         p1Score++;
-                        System.out.println("P1 wins!");
-                        System.out.println("P1 = "+p1Score);
-                        System.out.println("P2 = "+p2Score);
+                        System.out.println(P1+" wins!");
+                        System.out.println(P1+" = "+p1Score);
+                        System.out.println(P2+" = "+p2Score);
                     }
                 }
                 if (!gameOver)
                 {
                     if (oddRound)
-                    System.out.println("P2: Guess again.");
+                    System.out.println(P2+": Guess again.");
                     else
-                    System.out.println("P1: Guess again.");
+                    System.out.println(P1+": Guess again.");
                     guess = scan.next();
                 }
 
