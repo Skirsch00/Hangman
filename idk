@@ -15,6 +15,7 @@ public class hangman
         String P1 = scan.next();
         System.out.println("Second player, enter your name.");
         String P2 = scan.next();
+        wipePage();
         while (keepPlaying)
         {
             String incorLtrs[] = new String [MAX_GUESSES];
