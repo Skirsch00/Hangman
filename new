@@ -81,6 +81,12 @@ public class hangmanTwo
                             corLtrs[i] = " ";
                         else if (word.substring(i, i+1).equals(","))
                             corLtrs[i] = ",";
+                        else if (word.substring(i, i+1).equals("!"))
+                            corLtrs[i] = "!";
+                        else if (word.substring(i, i+1).equals("?"))
+                            corLtrs[i] = "?";
+                        else if (word.substring(i, i+1).equals("."))
+                            corLtrs[i] = ".";
                         else
                             corLtrs[i] = "displayUnderscore";
                     }
@@ -105,6 +111,12 @@ public class hangmanTwo
                             System.out.print("- ");
                         else if (corLtrs[i].equals(","))
                             System.out.print(", ");
+                        else if (word.substring(i, i+1).equals("!"))
+                            System.out.print("! ");
+                        else if (word.substring(i, i+1).equals("?"))
+                            System.out.print("? ");
+                        else if (word.substring(i, i+1).equals("."))
+                            System.out.print(". ");
                         else
                             System.out.print(corLtrs[i]+" ");
                     }
@@ -319,6 +331,12 @@ public class hangmanTwo
                                 System.out.print("'");
                             else if (corLtrs[i].equals("-"))
                                 System.out.print("- ");
+                            else if (word.substring(i, i+1).equals("!"))
+                                System.out.print("! ");
+                            else if (word.substring(i, i+1).equals("?"))
+                                System.out.print("? ");
+                            else if (word.substring(i, i+1).equals("."))
+                                System.out.print(". ");
                             else
                                 System.out.print(corLtrs[i].toUpperCase()+" ");
                         }
@@ -461,7 +479,8 @@ public class hangmanTwo
                     gameOver = false;
                     String[] wordBank = {"mouth-watering", "in a pickle", "go out on a limb", "off one's base", "wouldn't harm a fly", "back to the drawing board", "fight fire with fire", "elephant in the room", "pedestrian", "breeze", "absolute", 
                             "forbidding", "wandering", "passage", "knowing", "enjoyment", "aircraft", "pharmacy", "tradition", "arcade", "conversion", "like father like son", "beating a dead horse", "knock your socks off", "easy as pie", 
-                            "witchcraft", "no ifs, ands, or buts", "cheeky monkey", "easter bunny"};
+                            "witchcraft", "no ifs, ands, or buts", "easter bunny", "burst your bubble", "a dime a dozen", "short end of the stick", "curiosity killed the cat", "what am i, chopped liver?", "ride him, cowboy!",
+                            "mystery", "department", "recollection", "paperback"};
                     Random r = new Random();
                     int num = r.nextInt(wordBank.length);
                     String word = wordBank[num];
@@ -477,6 +496,12 @@ public class hangmanTwo
                             corLtrs[i] = " ";
                         else if (word.substring(i, i+1).equals(","))
                             corLtrs[i] = ",";
+                        else if (word.substring(i, i+1).equals("!"))
+                            corLtrs[i] = "!";
+                        else if (word.substring(i, i+1).equals("?"))
+                            corLtrs[i] = "?";
+                        else if (word.substring(i, i+1).equals("."))
+                            corLtrs[i] = ".";
                         else
                             corLtrs[i] = "displayUnderscore";
                     }
@@ -501,6 +526,12 @@ public class hangmanTwo
                             System.out.print("- ");
                         else if (corLtrs[i].equals(","))
                             System.out.print(", ");
+                        else if (word.substring(i, i+1).equals("!"))
+                            corLtrs[i] = "! ";
+                        else if (word.substring(i, i+1).equals("?"))
+                            corLtrs[i] = "? ";
+                        else if (word.substring(i, i+1).equals("."))
+                            corLtrs[i] = ". ";
                         else
                             System.out.print(corLtrs[i]+" ");
                     }
@@ -714,6 +745,12 @@ public class hangmanTwo
                                 System.out.print("'");
                             else if (corLtrs[i].equals("-"))
                                 System.out.print("- ");
+                            else if (word.substring(i, i+1).equals("!"))
+                                System.out.print("! ");
+                            else if (word.substring(i, i+1).equals("?"))
+                                System.out.print("? ");
+                            else if (word.substring(i, i+1).equals("."))
+                                System.out.print(". ");
                             else
                                 System.out.print(corLtrs[i].toUpperCase()+" ");
                         }
