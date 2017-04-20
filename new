@@ -1,5 +1,5 @@
-import java.util.Scanner;
-import java.util.Random;
+import java.util.*;
+import java.lang.*;
 public class hangmanTwo
 {
     public static void main (String [] args)
@@ -17,6 +17,7 @@ public class hangmanTwo
         Scanner scan = new Scanner(System.in);
         System.out.println("Welcome to Hangman! Type 1 to play singleplayer, 2 to play multiplayer or 3 for intructions!");
         int oneOrTwo = scan.nextInt();
+        boolean valid = false;
         if (oneOrTwo == 3)
         {
             System.out.println("You guess one letter at a time, until you have either guessed the whole word/phrase, or if you have 6 wrong answers.");
@@ -64,12 +65,35 @@ public class hangmanTwo
                         System.out.println(P2+": Type the word or phrase you want to be guessed.");
 
                     String word = scan.nextLine();
-                    while (word.length() < 6)
-                    {
-                        System.out.println("The word must be at least 6 letters. Try again.");
-                        word = scan.nextLine();
-                    }
 
+                    boolean validWord = false;
+
+                    while (!validWord) //checking that the input is valid
+                    {
+                        boolean validLength = false;
+                        boolean noNumber = true;
+                        if (word.length() < 6)
+                            System.out.println("The word must be at least 6 letters.");
+                        else
+                            validLength = true;
+
+                        for (int i = 0; i < word.length(); i++)
+                        {
+                            if (!Character.isLetter(word.charAt(i)))
+                                noNumber = false;
+                        }
+
+                        if (!noNumber)
+                            System.out.print("You cannot use numbers. ");
+
+                        if (validLength && noNumber)
+                            validWord = true;
+                        else 
+                        {
+                            System.out.println("Try again.");
+                            word = scan.nextLine();
+                        }
+                    }
                     String corLtrs[] = new String[word.length()];
                     for (int i = 0; i < corLtrs.length; i++)
                     {
@@ -420,7 +444,6 @@ public class hangmanTwo
                         {
                             System.out.println("Continue playing? (Type 'swap' to change mode.)");
                             String playOn = scan.nextLine();
-                            boolean valid = false;
                             while (!valid)
                             {
                                 if (playOn.equalsIgnoreCase("yes"))
@@ -808,7 +831,7 @@ public class hangmanTwo
                         {
                             System.out.println("Continue playing? (Type 'swap' to change mode.)");
                             String playOn = scan.nextLine();
-                            boolean valid = false;
+                            valid = false;
                             while (!valid)
                             {
                                 if (playOn.equalsIgnoreCase("yes"))
