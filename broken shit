@@ -7,9 +7,17 @@ public class hangmanProject
     {
         Scanner scan = new Scanner(System.in);
         boolean multiplayer = false;
-        String[] words = { "monkey", "giraffe", "octopus", "computer", "hoodie", "trousers", "desktop", "copper", "Unite", "Decisive", "Notice", "Educated", "explain", "branch", "talented", "punishment", "apparel", "dangerous", "Coherent", "Government", "Defeated", "Pumped", "History", "Troubled", "Heartbreaking", "Knowing", "Interest", "Mountain", "Window", "Interest", "Inconclusive", "Balance", "Freezing", "Challenge", "Brutally", "Creative", "definitive", "negative", "molecular", "Blushing", "entertain", "Believing", "Adherence", "Official", "Victory", "Billionaire", "Correlation", "Popular", "Attitude", "Amplitude" };
-
-        java.util.Random x = new java.util.Random();
+        String[] words =  { "monkey", "giraffe", "octopus", "computer", "hoodie", "trousers", "desktop", "copper", "Unite", "Decisive", "Notice", "Educated", 
+         "explain", "branch", "talented", "punishment", "apparel", "dangerous", "Coherent", "Government", "Defeated", "Pumped", "History", "Troubled", 
+        "Heartbreaking", "Knowing", "Interest", "Mountain", "Window", "Interest", "Inconclusive", "Balance", "Freezing", "Challenge", "Brutally", "Creative",
+        "definitive", "negative", "molecular", "Blushing", "entertain", "Believing", "Adherence", "Official", "Victory", "Billionaire", "Correlation", "Popular",
+        "Attitude", "Amplitude","Apple Pie", "Donald Trump", "Full-time", "In-class", "Off-campus", "Part-time", "Long-term", "Middle-aged", "Twelve-year-old", 
+        "Father-in-law", "Forty-two", "Thirty-seven", "Ex-girlfriend", "Co-operate", "They're", "Couldn't", "Didn't", "You're", "We've", "Who's",
+        "Grand Jury", "Ice Cream", "Real Estate", "Full Moon", "Attorney General", "Middle-class", "Post Office", "Living Room", "Full Moon", 
+        "Dinner Table", "Coffee Mug", "Hot Dog", "Let's", "Don't", "Won't", "High School", "Elementary School", "Could've", "Would've Had", 
+        "Chocolate Chip Cookies", "Well-respected", "Off-Campus", "State-of-art",  };
+       
+       java.util.Random x = new java.util.Random();
         int index = x.nextInt(words.length);
         String wordR = words[index];
 
