@@ -1,11 +1,9 @@
-
 import java.util.Scanner;
 
-public class hangman12
+public class hangmanProject
 {
-    public hangman12() {}
 
-    public static void ampleMethod()
+    public static void main(String [] args)
     {
         Scanner scan = new Scanner(System.in);
         boolean multiplayer = false;
@@ -16,10 +14,10 @@ public class hangman12
         String wordR = words[index];
 
         System.out.println("Welcome to hangman! You are on death row.");
-        System.out.println("The only way to be aquited is to not get hung! Good luck ;)");
+        System.out.println("The only way to be aquited is to not get hung! Good luck!");
         System.out.println("After a word is entered you will have to guess it 1 letter at a time.");
-        System.out.println("The max amount of incorrect guesses is 6 so choose wisely!");
-        System.out.println("Enter '1' for single player and '2' for multiplayer");
+        System.out.println("The max amount of incorrect guesses is 6, so choose wisely!");
+        System.out.println("Enter '1' for single player and '2' for multiplayer.");
         int gameType = scan.nextInt();
         if (gameType == 2)
         {
@@ -35,13 +33,14 @@ public class hangman12
             int MAX_GUESSES = 6;
             String[] incorLtrs = new String[6];
 
-            System.out.println("Please enter a word,enter random if you want a random word.");
-            scan.nextLine();
-            String word = scan.nextLine();
-            if (word.equalsIgnoreCase("random"))
-            {
-                word = wordR;
-            }
+            //System.out.println("Please enter a word,enter random if you want a random word.");
+            //scan.nextLine();
+            String word = wordR;
+            //String word = scan.nextLine();
+            //if (word.equalsIgnoreCase("random"))
+            //{
+            //    word = wordR;
+            //}
             String[] corLtrs = new String[word.length()];
             for (int i = 0; i < corLtrs.length; i++)
             {
@@ -174,7 +173,7 @@ public class hangman12
                     }
                 }
 
-                for (f = 0; f < l + 1; f++)
+                for (f = 0; f < l; f++)
                 {
 
                     if (str[f].equalsIgnoreCase(guess))
@@ -344,8 +343,8 @@ public class hangman12
 
     public static void wipePage()
     {
-        for (int i = 0; i < 60; i++) {
-            System.out.println();
-        }
+        //for (int i = 0; i < 60; i++) {
+            System.out.print("\f");
+        //}
     }
 }
