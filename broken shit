@@ -28,13 +28,13 @@ public class hangmanProject
         System.out.println("Enter '1' for single player and '2' for multiplayer.");
         int gameType = scan.nextInt();
         if (gameType == 2)
-        {//determine if player wants to play multiplayer if so 
+        {//determine if player wants to play multiplayer if so runs multiplayer method
             Multiplayer.runMultiplayer();
-            System.exit(0);
+            System.exit(0);//will exit after multiplayer is finished
         }
         else
         {
-            multiplayer=false;
+            multiplayer=false;//singleplayer
         }
         if (multiplayer ==false)
         {
