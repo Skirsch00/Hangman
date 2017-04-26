@@ -5,7 +5,7 @@ public class hangmanProject
 
     public static void main(String [] args)
     {
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);//index of random words to guess
         boolean multiplayer = false;
         String[] words =  { "monkey", "giraffe", "octopus", "computer", "hoodie", "trousers", "desktop", "copper", "Unite", "Decisive", "Notice", "Educated", 
          "explain", "branch", "talented", "punishment", "apparel", "dangerous", "Coherent", "Government", "Defeated", "Pumped", "History", "Troubled", 
@@ -20,7 +20,7 @@ public class hangmanProject
        java.util.Random x = new java.util.Random();
         int index = x.nextInt(words.length);
         String wordR = words[index];
-
+//opening instructions
         System.out.println("Welcome to hangman! You are on death row.");
         System.out.println("The only way to be aquited is to not get hung! Good luck!");
         System.out.println("After a word is entered you will have to guess it 1 letter at a time.");
@@ -28,7 +28,7 @@ public class hangmanProject
         System.out.println("Enter '1' for single player and '2' for multiplayer.");
         int gameType = scan.nextInt();
         if (gameType == 2)
-        {
+        {//determine if player wants to play multiplayer if so 
             Multiplayer.runMultiplayer();
             System.exit(0);
         }
