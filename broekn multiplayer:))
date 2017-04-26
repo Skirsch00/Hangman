@@ -104,11 +104,11 @@ public class Multiplayer
                 else if (corLtrs[i].equals(","))
                     System.out.print(", ");
                 else if (word.substring(i, i+1).equals("!"))
-                    corLtrs[i] = "! ";
+                    System.out.print("! ");
                 else if (word.substring(i, i+1).equals("?"))
-                    corLtrs[i] = "? ";
+                    System.out.print("? ");
                 else if (word.substring(i, i+1).equals("."))
-                    corLtrs[i] = ". ";
+                    System.out.print(". ");
                 else
                     System.out.print(corLtrs[i]+" ");
             }
