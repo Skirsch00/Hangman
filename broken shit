@@ -22,6 +22,7 @@ public class hangmanProject
         if (gameType == 2)
         {
             Multiplayer.runMultiplayer();
+            System.exit(0);
         }
         else
         {
@@ -142,7 +143,7 @@ public class hangmanProject
             int l = word.length();
             String[] gueses = new String[l + 6];
             String[] str = word.split("");
-            while ((wrongCounter < 6) && (rightCounter < l))
+            while ((wrongCounter < 6) && (rightCounter < l + 1))
             {
 
                 invalidInput = false;
